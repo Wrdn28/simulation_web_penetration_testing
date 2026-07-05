@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    image: hirokixd/project1-unified:latest
+    ports:
+      - "8001:80"
+    volumes:
+      - project1_db:/var/lib/sqlite # Path dummy untuk konsistensi, SQLite file ada di internal /var/www/html/database
+      # Sebenarnya SQLite ada di dalam image, tapi untuk persistensi di EasyPanel:
+      - ./database:/var/www/html/database
+    restart: unless-stopped
+
+volumes:
+  project1_db:
